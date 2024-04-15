@@ -1,7 +1,7 @@
 //MAIN LOGIC, INITIALIZATION OF THE SERVER IS DONE HERE
-
-
 //TO RUN LOCALLY, TYPE "node app.js" IN TERMINAL (W/O THE QUOTATION MARKS)
+
+
 const express = require('express');
 const path = require('path');
 

@@ -1,0 +1,1 @@
+// module.exports = { uri: 'mongodb+srv://YOUR_Login:YOUR_Password@cluster0.WHATEVER.mongodb.net/?retryWrites=true&w=majority' };
