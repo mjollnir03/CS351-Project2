@@ -13,7 +13,7 @@ const app = express();
 const publicDirectory = path.join(__dirname, 'public');
 
 // Serve static files from the public directory
-app.use(express.static(publicDirectory, { index: 'index.html' }));
+app.use(express.static(publicDirectory));
 app.use(logger('dev'));
 
 module.exports = app;
