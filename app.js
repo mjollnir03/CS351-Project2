@@ -14,6 +14,6 @@ const publicDirectory = path.join(__dirname, 'public');
 
 // Serve static files from the public directory
 app.use(express.static(publicDirectory));
-app.use(logger('dev'));
+app.use(logger('dev')); // can remove later
 
 module.exports = app;
