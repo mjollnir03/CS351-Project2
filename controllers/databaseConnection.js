@@ -2,4 +2,4 @@
 //THIS IS FOR PRIVACY REASONS
 
 // THE LINE BELOW WILL HAVE TO BE COMPLETELY CHANGED
-// module.exports = { uri: 'mongodb+srv://YOUR_Login:YOUR_Password@cluster0.WHATEVER.mongodb.net/?retryWrites=true&w=majority' };
+const uri = "mongodb+srv://eranjber:f2KwQTC7BqrMsHRK@cluster0.anve4ux.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
