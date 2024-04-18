@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+</head>
+<body>
+<h1><%= marketplaceName %>'s MarketPlace</h1>
+<form action="/shipping-form" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="<%= shippingInfo.name %>" />
+    <br>
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address" value="<%= shippingInfo.address %>" />
+    <br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" value="<%= shippingInfo.email %>" />
+    <br>
+    <label for="phone">Phone:</label>
+    <input type="tel" id="phone" name="phone" value="<%= shippingInfo.phone %>" />
+    <br>
+    <label for="shippingSpeed">Shipping Speed:</label>
+    <select id="shippingSpeed" name="shippingSpeed">
+        <option value="standard" <%= shippingInfo.shippingSpeed === 'standard' ? 'selected' : '' %> >Standard Shipping</option>
+        <option value="rush" <%= shippingInfo.shippingSpeed === 'rush' ? 'selected' : '' %> >Rush Shipping</option>
+        <option value="overnight" <%= shippingInfo.shippingSpeed === 'overnight' ? 'selected' : '' %> >Overnight Shipping</option>
+    </select>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>

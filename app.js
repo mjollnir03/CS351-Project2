@@ -17,3 +17,6 @@ app.use(express.static(publicDirectory));
 app.use(logger('dev')); // can remove later
 
 module.exports = app;
+
+
+
