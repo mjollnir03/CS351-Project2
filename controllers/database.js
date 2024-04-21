@@ -13,6 +13,7 @@ const client = new MongoClient(uri, {
         deprecationErrors: true,
     }
 });
+
 // TESTED AND WORKS!
 
 //BELOW WOULD BE THE FUNCTIONS IN THE FORMAT OF ...
