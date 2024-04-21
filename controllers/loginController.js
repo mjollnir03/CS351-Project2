@@ -24,6 +24,7 @@ module.exports.attemptLogin = function(req, res, next) {
 
 }
 
+
 async function lookUpAccount(email, password) {
     try {
         await client.connect();
