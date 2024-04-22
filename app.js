@@ -27,7 +27,7 @@ const publicDirectory = path.join(__dirname, 'public');
 // Serve static files from the public directory
 app.use(express.static(publicDirectory));
 
-app.use('/', loginRouter);
+app.use('/attemptLogin', loginRouter);
 
 
 

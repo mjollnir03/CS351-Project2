@@ -13,6 +13,6 @@ router.use(bodyParser.urlencoded({ extended: true })); // for parsing applicatio
 
 
 var loginController = require('../controllers/loginController');   //this will load the controller file below
-router.post('/attemptLogin', loginController.attemptLogin); //see controllers/loginController.js file
+router.post('/', loginController.attemptLogin); //see controllers/loginController.js file
 
 module.exports = router;
