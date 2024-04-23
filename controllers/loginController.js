@@ -37,9 +37,6 @@ async function lookUpAccount(email, password) {
         if (user) {
             console.log("User found:", user);
             console.log("Login successful");
-
-            // Assuming that we connect to the database here...
-            module.exports = user;
         } else {
             console.log("User not found or invalid credentials");
         }
