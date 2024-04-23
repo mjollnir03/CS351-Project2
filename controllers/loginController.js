@@ -1,7 +1,6 @@
 var { uri } = require('./databaseConnection');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
-
 const client = new MongoClient(uri, {
     serverApi: {
         version: ServerApiVersion.v1,
@@ -10,20 +9,20 @@ const client = new MongoClient(uri, {
     }
 });
 
-module.exports.attemptLogin = function(req, res, next) {
-
+module.exports.attemptLogin = async function(req, res, next) {
     var value_password = req.body.password;
     var value_email = req.body.email;
 
     console.log("Attempting to login ... have gotten user email and password ...")
-    lookUpAccount(value_email, value_password);
-    // Redirect to a different file after 5 seconds
-    setTimeout(function() {
-        res.redirect('/');
-    }, 5000); // 5000 milliseconds = 5 seconds
 
+    try {
+        const user = await lookUpAccount(value_email, value_password);
+        res.render('loginResult', { userFound: !!user }); // Render loginResult.ejs with userFound variable
+    } catch (error) {
+        console.error("Error looking up account:", error);
+        res.render('loginResult', { userFound: false }); // Render loginResult.ejs with userFound variable set to false in case of error
+    }
 }
-
 
 async function lookUpAccount(email, password) {
     try {
@@ -34,14 +33,9 @@ async function lookUpAccount(email, password) {
 
         const user = await usersCollection.findOne({ email: email, password: password });
 
-        if (user) {
-            console.log("User found:", user);
-            console.log("Login successful");
-        } else {
-            console.log("User not found or invalid credentials");
-        }
+        return user; // Return user if found
     } catch (error) {
-        console.error("Error looking up account:", error);
+        throw error; // Throw error if encountered
     } finally {
         await client.close();
     }
