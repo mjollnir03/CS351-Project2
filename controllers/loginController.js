@@ -18,6 +18,9 @@ module.exports.attemptLogin = async function(req, res, next) {
     try {
         const user = await lookUpAccount(value_email, value_password);
         res.render('loginResult', { userFound: !!user }); // Render loginResult.ejs with userFound variable
+        req.session.user = value_email;
+        console.log(value_email);
+        console.log(req.session);
     } catch (error) {
         console.error("Error looking up account:", error);
         res.render('loginResult', { userFound: false }); // Render loginResult.ejs with userFound variable set to false in case of error

@@ -34,7 +34,14 @@ app.use((req, res, next) => {
         req.session.cart = [];
     }
     next();
-})
+});
+app.use((req, res, next) => {
+    if(!req.session.user)
+    {
+        req.session.user = "";
+    }
+    next();
+});
 
 
 
