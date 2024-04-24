@@ -15,19 +15,23 @@
 </head>
 <body>
 <% if (userFound) { %>
-    <h1>We found you account, you will be logged in for this session. </h1>
+    <h1>We found your account, you will be logged in for this session.</h1>
     <h1>Happy Shopping!</h1>
+    <h2>Redirecting you to the shop...</h2>
+    <script>
+        setTimeout(function() {
+            window.location.href = '/shop.html';
+        }, 4000); // 4000 milliseconds = 4 seconds
+    </script>
 <% } else { %>
     <h1>We couldn't find any account with the provided Email and Password</h1>
     <h2>Try Creating an account, or sign in with a different Email and Password</h2>
+    <h2>Redirecting you to the account page...</h2>
+    <script>
+        setTimeout(function() {
+            window.location.href = '/account.html';
+        }, 4000); // 4000 milliseconds = 4 seconds
+    </script>
 <% } %>
-
-<h2>Redirecting you back to the homepage...</h2>
-
-<script>
-    setTimeout(function() {
-        window.location.href = '/';
-    }, 8000); // 8000 milliseconds = 8 seconds
-</script>
 </body>
 </html>
