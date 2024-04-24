@@ -9,3 +9,11 @@ var querystring = require('querystring'); //for use in GET Query string of form 
 router.use(bodyParser.json()); // for parsing application/json
 
 router.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+//ADD CODE HERE (REMINDER) Ellmaer will do this
+
+var createAccountController = require("../controllers/createAccountController");
+
+router.post("/", createAccountController.attemptCreateAccount);
+
+module.exports = router;

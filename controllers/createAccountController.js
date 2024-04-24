@@ -10,3 +10,20 @@ const client = new MongoClient(uri, {
     }
 });
 
+//ADD CODE HERE (REMINDER) Ellmaer Will do this
+
+module.exports.attemptCreateAccount = async function(req, res, next){
+    res.render('createAccountResult');
+}
+
+async function checkAccountExistance(email, password) {
+    try {
+
+    } catch (error) {
+
+    }
+    finally {
+
+    }
+
+}

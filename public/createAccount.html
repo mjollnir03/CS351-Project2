@@ -98,14 +98,14 @@
   <div class="row justify-content-center">
     <div class="col-md-6">
       <h2 class="text-center"> <em>Registration Form</em></h2>
-      <form class="row g-3" id="registrationForm" onsubmit="return validateForm()">
+      <form class="row g-3" id="registrationForm" onsubmit="return validateForm()" action="/createAccount" method="post">
         <div class="col-md-6">
           <label for="validationDefault01" class="form-label">First name</label>
-          <input type="text" class="form-control" id="validationDefault01" value="John" required="required" />
+          <input type="text" class="form-control" id="validationDefault01"  required="required" />
         </div>
         <div class="col-md-6">
           <label for="validationDefault02" class="form-label">Last name</label>
-          <input type="text" class="form-control" id="validationDefault02" value="Smith" required="required" />
+          <input type="text" class="form-control" id="validationDefault02"  required="required" />
         </div>
         <div class="col-md-6">
           <label for="validationDefaultStreet" class="form-label">Street</label>
@@ -120,7 +120,9 @@
           <select class="form-select" id="validationDefaultState" required="required">
             <option selected="selected" disabled="disabled" value="">Choose...</option>
             <option>California</option>
-            <option>Other</option>
+            <option>Nevada</option>
+              <option>Washington</option>
+              <option>Oregon</option>
           </select>
         </div>
         <div class="col-md-3">

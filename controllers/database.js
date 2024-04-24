@@ -17,7 +17,7 @@ const client = new MongoClient(uri, {
 // TESTED AND WORKS!
 
 //BELOW WOULD BE THE FUNCTIONS IN THE FORMAT OF ...
-// module.exports.functionName = function(req, res, next) { ... }
+// module.exports.functionName = function(req, res, next) { ... } //this function could also be an async function
 
 //ANY FUNCTION THAT CONNECTS TO THE MONGODB-DATABASE DIRECTLY SHOULD BE ...
 // async function otherFunction() {

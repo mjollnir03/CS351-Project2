@@ -9,7 +9,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var loginRouter = require('./routes/loginRoute.js');
-var cartRouter = require('./routes/cartRoute')
+var cartRouter = require('./routes/cartRoute');
+var createAccountRouter = require('./routes/createAccountRoute');
 
 const app = express();
 
@@ -29,6 +30,8 @@ const publicDirectory = path.join(__dirname, 'public');
 app.use(express.static(publicDirectory));
 
 app.use('/attemptLogin', loginRouter);
+app.use('/createAccount', createAccountRouter);
+
 app.use('/', cartRouter);
 
 
