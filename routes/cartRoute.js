@@ -11,6 +11,8 @@ const cartController  = require('../controllers/cartController');
 //    res.redirect('/' + product);
 // });
 
+
+
 router.post('/addToCart', cartController.addToCart);
 
 // Remove from cart

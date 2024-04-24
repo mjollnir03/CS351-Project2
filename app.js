@@ -28,6 +28,10 @@ app.use(session({
     saveUninitialized: false,
     resave: false
 }));
+
+
+
+
 app.use((req, res, next) => {
     if(!req.session.cart)
     {
