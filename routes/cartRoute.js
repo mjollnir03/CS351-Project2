@@ -11,7 +11,7 @@ const cartController  = require('../controllers/cartController');
 //    res.redirect('/' + product);
 // });
 
-router.post('/add', cartController.addToCart);
+router.post('/addToCart', cartController.addToCart);
 
 // Remove from cart
 router.post('/remove/:id', async (req, res) => {
