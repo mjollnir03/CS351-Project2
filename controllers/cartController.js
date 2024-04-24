@@ -26,6 +26,7 @@ const addToCart = async(req, res, next) => {
 
     console.log(req.session);
     console.log(req.sessionID);
+    console.log("User: " + req.session.user);
 
     res.status(200).send("Item has been sent to cart");
 
