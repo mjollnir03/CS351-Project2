@@ -1,14 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const { addToCart, removeFromCart, updateCart} = require('../controllers/cartController');
+const cartController  = require('../controllers/cartController');
 
 // Add to cart
-router.post('/add/:id', async (req, res) => {
-   var product = req.params.id;
+// router.post('/add/:id', async (req, res) => {
+//    var product = req.params.id;
+//
+//    await addToCart(product);
+//    res.redirect('/' + product);
+// });
 
-   await addToCart(product);
-   res.redirect('/' + product);
-});
+router.post('/add', cartController.addToCart);
 
 // Remove from cart
 router.post('/remove/:id', async (req, res) => {
@@ -28,5 +31,7 @@ router.post('/update/:id/:q', async (req, res) => {
     // May change where this is redirected later
    res.redirect('/' + product);
 });
+
+router.get('/view', cartController.viewCart);
 
 module.exports = router;

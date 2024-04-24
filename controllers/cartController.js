@@ -1,5 +1,9 @@
 const { uri} = require('./databaseConnection')
 const { MongoClient, ServerApiVersion } = require('mongodb');
+const express = require('express');
+const session = require('express-session')
+
+const app = express();
 
 const client = new MongoClient(uri, {
     serverApi: {
@@ -10,7 +14,22 @@ const client = new MongoClient(uri, {
 });
 
 
-const addToCart = async(product) => {
+const addToCart = async(req, res, next) => {
+    var productID = req.body.productID;
+    var price = req.body.price;
+    console.log(productID);
+    console.log(price);
+
+
+    req.session.cart.push([productID, price]);
+
+
+    console.log(req.session);
+    console.log(req.sessionID);
+
+    res.status(200).send("Item has been sent to cart");
+
+
     try {
         await client.connect();
         // Connect to the right database
@@ -27,6 +46,13 @@ const addToCart = async(product) => {
         await client.close();
     }
 }
+
+// Test function
+const viewCart = async(req, res, next) => {
+    res.status(200).json(req.session.cart);
+};
+
+
 
 const removeFromCart = async(product) => {
     try {
@@ -65,5 +91,6 @@ const updateCart = async(product, quantity) => {
 module.exports = {
     addToCart,
     removeFromCart,
-    updateCart
+    updateCart,
+    viewCart
 };
