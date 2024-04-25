@@ -1,5 +1,6 @@
 var { uri } = require('./databaseConnection');
 const { MongoClient, ServerApiVersion } = require('mongodb');
+const session = require('express-session');
 
 const client = new MongoClient(uri, {
     serverApi: {
@@ -17,15 +18,15 @@ module.exports.attemptLogin = async function(req, res, next) {
 
     try {
         const user = await lookUpAccount(value_email, value_password);
+        req.session.user = user ? value_email : ""; // Set session user to email if user exists, otherwise set it to an empty string
+        console.log(req.session.user); // Log session user
         res.render('loginResult', { userFound: !!user }); // Render loginResult.ejs with userFound variable
-        req.session.user = value_email;
-        console.log(value_email);
-        console.log(req.session);
     } catch (error) {
         console.error("Error looking up account:", error);
         res.render('loginResult', { userFound: false }); // Render loginResult.ejs with userFound variable set to false in case of error
     }
 }
+
 
 async function lookUpAccount(email, password) {
     try {
