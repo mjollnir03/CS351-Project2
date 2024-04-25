@@ -37,16 +37,16 @@ This is Group 5's CS351 Project 2 GitHub Repository.
 * ![image](https://github.com/mjollnir03/CS351-Project2/assets/98365394/f3a89e1c-71f0-4af5-986d-e6d67088901f)
 
 ### createAccount.html -> (Ellmaer Ranjber)
-* I created an Express.js Router in "./routes/loginRoute.js" and is usedin the "./app.js", that will deal with the HTTP POST request in the server with the route titled "/attemptLogin".
-* The ```var cartRouter = require('./routes/cartRoute');``` imports the router into the app; and the ```app.use('/attemptLogin', loginRouter);``` is what uses it and listens to any HTTP REQUESTS to that path/route.
+* I created an Express.js Router in "./routes/loginRoute.js" and is usedin the "./app.js", that will deal with the HTTP POST request in the server with the route titled "/attemptLogin"
+* The ```var cartRouter = require('./routes/cartRoute');``` imports the router into the app; and the ```app.use('/attemptLogin', loginRouter);``` is what uses it and listens to any HTTP REQUESTS to that path/route
 * The router will call this function everytime the user tries to attempt to login,
 * ![image](https://github.com/mjollnir03/CS351-Project2/assets/98365394/7d124cb5-409d-476c-8051-c491ff829d5e)
 * Then it will lookup the provided email and password in the "mainDataBase" "users" collection and see if it exists or not,
 * ![image](https://github.com/mjollnir03/CS351-Project2/assets/98365394/e75c375f-ac59-4ef4-8600-d4487ba73676)
 * Based on whether or not the user can or can't login one of two things will happen in the './views/loginResult.ejs" file that I created to dynamically display information to the client
-
-
-
+* Option 1 will be chosen by the controller if a user is found, which then the account will be logged in ( and the email will be saved using Express-Sessions) and then redirecting them to the websites product catalog
+* Option 2 will be chosen by the controller if a user is not found, then telling the user and redirecting them back to the login page, the following is an image of the "./views/loginResult.js",
+* ![Screenshot 2024-04-25 133715](https://github.com/mjollnir03/CS351-Project2/assets/98365394/6f2ed508-a6a9-4081-b9ef-0ca6f39b6931)
 
 ### account.html -> (Ellmaer Ranjber)
 * Talk about your part
@@ -58,5 +58,5 @@ This is Group 5's CS351 Project 2 GitHub Repository.
 * Talk about your part
   
 ### shopping cart check out -> (Quy Phan + Arnold Portela)
-* Talk about your par
+* Talk about your part
 
