@@ -20,37 +20,48 @@ const addToCart = async(req, res, next) => {
     console.log(productID);
     console.log(price);
 
-
     req.session.cart.push([productID, price]);
-
 
     console.log(req.session);
     console.log(req.sessionID);
     console.log("User: " + req.session.user);
 
-    res.status(200).send("Item has been sent to cart");
-
-
     try {
         await client.connect();
-        // Connect to the right database
-        // const db = client.db('DATABASE NAME');
 
-        // Connect to the right collection
-        // const collection = db.collection('COLLECTION NAME');
+        const db = client.db('mainDataBase');
+        const collection = db.collection('orders');
 
+        const user = await collection.findOne({user: req.session.user})
+        if(user)
+        {
+            console.log("Updating...");
+            const updateCart = await collection.updateOne({user: req.session.user}, {$push: {"cart": [productID, price]}});
+        }
+        else
+        {
+            console.log(req.session.cart);
 
-        // Inserting data into the collection
-        // collection.insertOne({product: product, quantity: 0, MAYBE SOMETHING RELATED TO THE USER});
+            await collection.insertOne({user: req.session.user, cart: req.session.cart});
+            console.log("Inserted");
+        }
+    }
+    catch(err)
+    {
+        throw err;
     }
     finally {
         await client.close();
     }
+
+
+    res.redirect('/');
 }
 
 // Test function
 const viewCart = async(req, res, next) => {
     res.status(200).json(req.session.cart);
+
 };
 
 
