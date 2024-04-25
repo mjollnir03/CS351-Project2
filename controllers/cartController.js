@@ -182,5 +182,5 @@ module.exports = {
     removeFromCart,
     viewCart,
     clearCart,
-    getShoppingCart
+    getShoppingCart,
 };
