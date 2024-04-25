@@ -58,7 +58,7 @@ const viewCart = async(req, res, next) => {
     res.status(200).json(req.session.cart);
 };
 
-const getProducts = async (req, res, next) => {
+const getShoppingCart = async (req, res, next) => {
     const cart = req.session.cart;
     console.log(cart);
     res.render('cart', {cart: cart});
@@ -163,7 +163,7 @@ const clearCart = async (req, res, next) => {
             }
         }
         catch(err) {
-            console.log("An error has occured: " + err);
+            console.log("An error has occurred: " + err);
             next(err);
         }
         finally {
@@ -182,5 +182,5 @@ module.exports = {
     removeFromCart,
     viewCart,
     clearCart,
-    getProducts
+    getShoppingCart
 };
