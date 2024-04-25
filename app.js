@@ -4,7 +4,7 @@
 // Import necessary modules
 var createError = require('http-errors');
 var express = require('express');
-var session = require('express-session')
+var session = require('express-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -37,9 +37,6 @@ app.use((req, res, next) => {
     {
         req.session.cart = [];
     }
-    next();
-});
-app.use((req, res, next) => {
     if(!req.session.user)
     {
         req.session.user = "";
