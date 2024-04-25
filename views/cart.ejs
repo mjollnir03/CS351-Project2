@@ -29,6 +29,19 @@
     <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required><br><br>
 
     <button type="submit">Submit</button>
+<h1>Shipping Options</h1>
+
+    <input type="radio" id="overnight" name="shipping" value="overnight">
+    <label for="overnight">Overnight Shipping ($100.00)</label><br>
+
+    <input type="radio" id="twoday" name="shipping" value="twoday">
+    <label for="twoday">2-Day Shipping ($50.00)</label><br>
+
+    <input type="radio" id="ground" name="shipping" value="ground">
+    <label for="ground">Ground Shipping ($20.00)</label><br>
+
+
+
 
 <h1>Clear Cart</h1>
 <form action="/clearCart" method="GET">
