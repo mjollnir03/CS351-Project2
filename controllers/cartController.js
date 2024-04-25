@@ -58,7 +58,7 @@ const viewCart = async(req, res, next) => {
     res.status(200).json(req.session.cart);
 };
 
-const removeFromCart = async(res, req, next) => {
+const removeFromCart = async(req, res, next) => {
     var itemToRemove = req.body.productID;
 
     try {
@@ -132,8 +132,46 @@ const removeFromCart = async(res, req, next) => {
     }
 }
 
+const clearCart = async (req, res, next) => {
+    if(req.session.user !== "")
+    {
+        try {
+            await client.connect();
+            const db = client.db('mainDataBase');
+            const collection = await db.collection('orders');
+
+            const user = await collection.findOne({user: req.session.user});
+
+            if(user)
+            {
+                // This should clear the whole document in the database
+                await collection.deleteOne({user: req.session.user});
+                // This should clear the session cart
+                req.session.cart = [];
+            }
+            else
+            {
+                console.log("Please add something to cart first.")
+            }
+        }
+        catch(err) {
+            console.log("An error has occured: " + err);
+            next(err);
+        }
+        finally {
+            await client.close();
+        }
+    }
+    else
+    {
+        // We're just clearing the session cart
+        req.session.cart = [];
+    }
+}
+
 module.exports = {
     addToCart,
     removeFromCart,
-    viewCart
+    viewCart,
+    clearCart
 };
