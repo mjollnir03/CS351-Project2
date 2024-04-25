@@ -58,7 +58,7 @@ app.use(express.static(publicDirectory));
 app.use('/attemptLogin', loginRouter);
 app.use('/createAccount', createAccountRouter);
 
-app.use('/', cartRouter);
+app.use('/', cartRouter); //should update later
 
 
 
