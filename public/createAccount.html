@@ -101,23 +101,23 @@
       <form class="row g-3" id="registrationForm" onsubmit="return validateForm()" action="/createAccount" method="post">
         <div class="col-md-6">
           <label for="validationDefault01" class="form-label">First name</label>
-          <input type="text" class="form-control" id="validationDefault01"  required="required" />
+          <input name="firstName" type="text" class="form-control" id="validationDefault01"  required="required" />
         </div>
         <div class="col-md-6">
           <label for="validationDefault02" class="form-label">Last name</label>
-          <input type="text" class="form-control" id="validationDefault02"  required="required" />
+          <input name="lastName" type="text" class="form-control" id="validationDefault02"  required="required" />
         </div>
         <div class="col-md-6">
           <label for="validationDefaultStreet" class="form-label">Street</label>
-          <input type="text" class="form-control" id="validationDefaultStreet" required="required" />
+          <input name="street" type="text" class="form-control" id="validationDefaultStreet" required="required" />
         </div>
         <div class="col-md-6">
           <label for="validationDefaultCity" class="form-label">City</label>
-          <input type="text" class="form-control" id="validationDefaultCity" required="required" />
+          <input name="city" type="text" class="form-control" id="validationDefaultCity" required="required" />
         </div>
         <div class="col-md-3">
           <label for="validationDefaultState" class="form-label">State</label>
-          <select class="form-select" id="validationDefaultState" required="required">
+          <select name="selectedState" class="form-select" id="validationDefaultState" required="required">
             <option selected="selected" disabled="disabled" value="">Choose...</option>
             <option>California</option>
             <option>Nevada</option>
@@ -127,11 +127,11 @@
         </div>
         <div class="col-md-3">
           <label for="validationDefaultZip" class="form-label">Zip</label>
-          <input type="text" class="form-control" id="validationDefaultZip" required="required" />
+          <input name="zip" type="text" class="form-control" id="validationDefaultZip" required="required" />
         </div>
         <div class="col-md-6">
           <label for="validationDefaultPhoneNumber" class="form-label">Phone Number</label>
-          <input type="tel" class="form-control" id="validationDefaultPhoneNumber" required="required" />
+          <input name="phoneNumber" type="tel" class="form-control" id="validationDefaultPhoneNumber" required="required" />
         </div>
         <div class="col-md-6">
           <label for="validationDefaultEmail" class="form-label">Email</label>
