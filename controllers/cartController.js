@@ -138,6 +138,8 @@ const removeFromCart = async(req, res, next) => {
     finally {
         await client.close();
     }
+
+    res.render('cart', {cart: res.session.cart});
 }
 
 const clearCart = async (req, res, next) => {
@@ -175,6 +177,8 @@ const clearCart = async (req, res, next) => {
         // We're just clearing the session cart
         req.session.cart = [];
     }
+
+    res.render('cart', {cart: req.session.cart});
 }
 
 module.exports = {

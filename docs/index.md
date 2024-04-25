@@ -55,8 +55,15 @@ This is Group 5's CS351 Project 2 GitHub Repository.
 * Talk about your part
 
 ### cart -> (Austin Ly)
-* Talk about your part
-  
+* I mainly worked on the backend for the cart system and the express-sessions. 
+* I created the cartController.js file in the controller directory as well as the cartRoute.js in the routes directory.
+* I've also editing a bit in the app.js file to set up the sessions variables and just the basic routing to be able to use the cartRoute. Then I've also edited the loginController.js a bit to be able to resume the shopping cart for the logged-in user.
+* I've set up the MongoClient database so that whenever a user adds something to the cart, it'll reflect on the MongoClient database.
+* In the cartController.js file, I've created a function to be able to add products the session's cart and the function to remove products and clear the cart.
+* In the cartRoute.js file, I just set up the basic routing to call the above-mentioned functions.
+* Everything cart related is all session based. The MongoClient Database is just there to be able to restore the cart and as back up for the cart. Each cart is designated to individual users. If a user isn't logged in, a session cart will still be there, but it won't be backed up in the MongoClient database.
+
+
 ### shopping cart check out -> (Quy Phan + Arnold Portela)
 * Talk about your part
 
