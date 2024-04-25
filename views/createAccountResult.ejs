@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You</title>
+    <title>Create Account Result</title>
     <style>
         body {
             background-color: #F2EFE5;
@@ -14,8 +14,25 @@
     </style>
 </head>
 <body>
-<h1>Thank you for creating an account!</h1>
-<p>We're thrilled to have you as a member of our community.</p>
-<p>Feel free to explore our website and start shopping!</p>
+<% if (success === true) { %>
+    <h1><%= message %></h1>
+        <h1>You will be logged into this account for the duration of your shopping!</h1>
+        <h2>Redirecting you to the home page ...</h2>
+    <script>
+        setTimeout(function() {
+            window.location.href = '/shop.html';
+        }, 4000); // 4000 milliseconds = 4 seconds
+    </script>
+<% } else { %>
+    <h1><%= message %></h1>
+        <h2>Redirecting you to the account page ...</h2>
+    <!-- Redirect to login page -->
+    <script>
+        setTimeout(function() {
+            window.location.href = '/account.html';
+        }, 4000); // 4000 milliseconds = 4 seconds
+    </script>
+<% } %>
 </body>
 </html>
+
