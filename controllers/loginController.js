@@ -20,6 +20,12 @@ module.exports.attemptLogin = async function(req, res, next) {
         const user = await lookUpAccount(value_email, value_password);
         req.session.user = user ? value_email : ""; // Set session user to email if user exists, otherwise set it to an empty string
         console.log(req.session.user); // Log session user
+
+        // Clearing cart
+        req.session.cart = [];
+        // Restoring cart;
+        req.session.cart = await restoreCart(value_email);
+
         res.render('loginResult', { userFound: !!user }); // Render loginResult.ejs with userFound variable
     } catch (error) {
         console.error("Error looking up account:", error);
@@ -41,6 +47,34 @@ async function lookUpAccount(email, password) {
     } catch (error) {
         throw error; // Throw error if encountered
     } finally {
+        await client.close();
+    }
+}
+
+async function restoreCart(email) {
+    try
+    {
+        await client.connect();
+        const db = client.db('mainDataBase');
+        const collection = db.collection('orders');
+
+        const user = await collection.findOne({user: email})
+        if(user)
+        {
+            return user.cart;
+        }
+        else
+        {
+            console.log("No existing cart data...");
+            return [];
+        }
+    }
+    catch(err)
+    {
+        throw err;
+    }
+    finally
+    {
         await client.close();
     }
 }
