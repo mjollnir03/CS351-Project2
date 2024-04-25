@@ -26,34 +26,29 @@ const addToCart = async(req, res, next) => {
     console.log(req.sessionID);
     console.log("User: " + req.session.user);
 
-    try {
-        await client.connect();
+    if(req.session.user !== "") {
+        try {
+            await client.connect();
 
-        const db = client.db('mainDataBase');
-        const collection = db.collection('orders');
+            const db = client.db('mainDataBase');
+            const collection = db.collection('orders');
 
-        const user = await collection.findOne({user: req.session.user})
-        if(user)
-        {
-            console.log("Updating...");
-            const updateCart = await collection.updateOne({user: req.session.user}, {$push: {"cart": [productID, price]}});
+            const user = await collection.findOne({user: req.session.user})
+            if (user) {
+                console.log("Updating...");
+                const updateCart = await collection.updateOne({user: req.session.user}, {$push: {"cart": [productID, price]}});
+            } else {
+                console.log(req.session.cart);
+
+                await collection.insertOne({user: req.session.user, cart: req.session.cart});
+                console.log("Inserted");
+            }
+        } catch (err) {
+            throw err;
+        } finally {
+            await client.close();
         }
-        else
-        {
-            console.log(req.session.cart);
-
-            await collection.insertOne({user: req.session.user, cart: req.session.cart});
-            console.log("Inserted");
-        }
     }
-    catch(err)
-    {
-        throw err;
-    }
-    finally {
-        await client.close();
-    }
-
 
     res.redirect('/');
 }
@@ -61,22 +56,30 @@ const addToCart = async(req, res, next) => {
 // Test function
 const viewCart = async(req, res, next) => {
     res.status(200).json(req.session.cart);
-
 };
 
+const removeFromCart = async(res, req, next) => {
+    var itemToRemove = req.body.productID;
 
-
-const removeFromCart = async(product) => {
     try {
         await client.connect();
-        // Connect to the right database
-        // const db = client.db('DATABASE NAME');
+        const db = client.db('mainDataBase');
+        const collection = db.collection('orders')
 
-        // Connect to the right collection
-        // const collection = db.collection('COLLECTION NAME');
-
-
-        // Remove data from collection
+        const user = await collection.findOne({user: req.session.user});
+        if(user)
+        {
+            await collection.updateOne({user: req.session.user}, {$pull: {cart: {$elemMatch: {$in: [itemToRemove]}}}})
+        }
+        else
+        {
+            console.log("User not found to remove an item from cart")
+            // If from only sessions, remove from array normally
+        }
+    }
+    catch (err)
+    {
+        throw err;
     }
     finally {
         await client.close();
