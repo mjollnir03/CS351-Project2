@@ -86,26 +86,8 @@ const removeFromCart = async(res, req, next) => {
     }
 }
 
-const updateCart = async(product, quantity) => {
-    try {
-        await client.connect();
-        // Connect to the right database
-        // const db = client.db('DATABASE NAME');
-
-        // Connect to the right collection
-        // const collection = db.collection('COLLECTION NAME');
-
-
-        // Update collection
-    }
-    finally {
-        await client.close();
-    }
-}
-
 module.exports = {
     addToCart,
     removeFromCart,
-    updateCart,
     viewCart
 };
