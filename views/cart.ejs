@@ -6,23 +6,11 @@
     <title>Shopping Cart</title>
 </head>
 <body>
-<h1>Products</h1>
-<ul>
-    <% products.forEach(product => { %>
-        <li>
-            <%= product.name %> - $<%= product.price %>
-            <form action="/add-to-cart" method="post">
-                <input type="hidden" name="productId" value="<%= product.id %>">
-                <button type="submit">Add to Cart</button>
-            </form>
-        </li>
-    <% }); %>
-</ul>
 
 <h2>Cart</h2>
 <ul>
     <% cart.forEach(item => { %>
-        <li><%= item.name %> - $<%= item.price %></li>
+        <li><%= item[0] %> - $<%= item[1] %></li>
     <% }); %>
 </ul>
 </body>

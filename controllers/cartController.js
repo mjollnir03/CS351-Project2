@@ -58,6 +58,14 @@ const viewCart = async(req, res, next) => {
     res.status(200).json(req.session.cart);
 };
 
+const getProducts = async (req, res, next) => {
+    const cart = req.session.cart;
+    console.log(cart);
+    res.render('cart', {cart: cart});
+}
+
+
+
 const removeFromCart = async(req, res, next) => {
     var itemToRemove = req.body.productID;
 
@@ -173,5 +181,6 @@ module.exports = {
     addToCart,
     removeFromCart,
     viewCart,
-    clearCart
+    clearCart,
+    getProducts
 };
