@@ -139,7 +139,7 @@ const removeFromCart = async(req, res, next) => {
         await client.close();
     }
 
-    res.render('cart', {cart: res.session.cart});
+    res.render('cart', {cart: req.session.cart});
 }
 
 const clearCart = async (req, res, next) => {
