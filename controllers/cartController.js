@@ -82,7 +82,7 @@ const removeFromCart = async(res, req, next) => {
 
             // Removing item from session
             lastIndex = -1;
-            for(let i = cart - 1; i >= 0; i--)
+            for(let i = cart.length - 1; i >= 0; i--)
             {
                 if(cart[i][0] === itemToRemove)
                 {
@@ -105,8 +105,8 @@ const removeFromCart = async(res, req, next) => {
             lastIndex = -1;
 
             // I put it into a variable, so I don't have to keep requesting
-            let cart = req.session.cart;
-            for(let i = cart - 1; i >= 0; i--)
+            cart = req.session.cart;
+            for(let i = cart.length - 1; i >= 0; i--)
             {
                 if(cart[i][0] === itemToRemove)
                 {
@@ -124,7 +124,8 @@ const removeFromCart = async(res, req, next) => {
     }
     catch (err)
     {
-        throw err;
+        console.error("An error occurred: " + err);
+        next(err);
     }
     finally {
         await client.close();
