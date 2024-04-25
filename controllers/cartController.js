@@ -67,14 +67,59 @@ const removeFromCart = async(res, req, next) => {
         const collection = db.collection('orders')
 
         const user = await collection.findOne({user: req.session.user});
+
+
+
+        let lastIndex
+        // I put it into a variable, so I don't have to keep requesting the cart
+        let cart = req.session.cart;
+
         if(user)
         {
+            // Removing item from database
             await collection.updateOne({user: req.session.user}, {$pull: {cart: {$elemMatch: {$in: [itemToRemove]}}}})
+
+
+            // Removing item from session
+            lastIndex = -1;
+            for(let i = cart - 1; i >= 0; i--)
+            {
+                if(cart[i][0] === itemToRemove)
+                {
+                    lastIndex = i;
+                    break;
+                }
+            }
+
+            // If found, remove the last instance of the item to delete
+            if(lastIndex !== -1)
+            {
+                req.session.cart.splice(lastIndex, 1);
+            }
         }
         else
         {
-            console.log("User not found to remove an item from cart")
             // If from only sessions, remove from array normally
+
+            // Removing item from session
+            lastIndex = -1;
+
+            // I put it into a variable, so I don't have to keep requesting
+            let cart = req.session.cart;
+            for(let i = cart - 1; i >= 0; i--)
+            {
+                if(cart[i][0] === itemToRemove)
+                {
+                    lastIndex = i;
+                    break;
+                }
+            }
+
+            // If found, remove the last instance of the item to delete
+            if(lastIndex !== -1)
+            {
+                req.session.cart.splice(lastIndex, 1);
+            }
         }
     }
     catch (err)
