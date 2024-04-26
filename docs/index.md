@@ -37,8 +37,25 @@ This is Group 5's CS351 Project 2 GitHub Repository.
 * ![image](https://github.com/mjollnir03/CS351-Project2/assets/98365394/f3a89e1c-71f0-4af5-986d-e6d67088901f)
 
 ### createAccount.html -> (Ellmaer Ranjber)
+* I created an Express.js Router in "./routes/createAccountRoute.js" and is usedin the "./app.js", that will deal with the HTTP POST request in the server with the route titled "/createAccount"
+* The ```var createAccountRouter = require('./routes/createAccountRoute');``` imports the router for creat account into the app, and the ```app.use('/createAccount', createAccountRouter);``` is what the express.js module listens to in order to resolve any HTTP POST Request with the route of "/createAccount".
+* The router we have created will call this function everytime the user requests to create an account, the function is below,
+* ![image](https://github.com/mjollnir03/CS351-Project2/assets/98365394/1d112df5-da8e-487a-819a-3a914e1514d9)
+* This function will load all the input fields given by the user and respectivley store it into the MongoDB Database, such as first name last name address etc.
+* What the fucntion does is first check if the email provided after the client side validation is within the data base already if so then it will display a certain message to the user through a dynamic ejs file
+* If the account does not already exist, then it will go ahead and create the account, store it in the MongoDB and also have it so that it will store the user as active with Express-Sessions
+* The following is a snippet of the controller code
+* ![image](https://github.com/mjollnir03/CS351-Project2/assets/98365394/e4fef391-2358-4777-ad0a-324262f05d16)
+* The ejs file that is render will display the message that was recieved from the contoller file, and then redirect according to the account existance. If the account exists then the client will be told and redirected to login instead, if the accoint is successfully created then it will prompt that the account was created successfully to the user
+* The following is the snippet of the two possible messages to be rendered to the client,
+* ![Screenshot 2024-04-25 182800](https://github.com/mjollnir03/CS351-Project2/assets/98365394/19fca925-7d14-45b0-817e-233c4060b6ec)
+
+
+
+
+### account.html -> (Ellmaer Ranjber)
 * I created an Express.js Router in "./routes/loginRoute.js" and is usedin the "./app.js", that will deal with the HTTP POST request in the server with the route titled "/attemptLogin"
-* The ```var cartRouter = require('./routes/cartRoute');``` imports the router into the app; and the ```app.use('/attemptLogin', loginRouter);``` is what uses it and listens to any HTTP REQUESTS to that path/route
+* The ```var loginRouter = require('./routes/loginRoute.js');``` imports the router into the app; and the ```app.use('/attemptLogin', loginRouter);``` is what uses it and listens to any HTTP REQUESTS to that path/route
 * The router will call this function everytime the user tries to attempt to login,
 * ![image](https://github.com/mjollnir03/CS351-Project2/assets/98365394/7d124cb5-409d-476c-8051-c491ff829d5e)
 * Then it will lookup the provided email and password in the "mainDataBase" "users" collection and see if it exists or not,
@@ -47,9 +64,6 @@ This is Group 5's CS351 Project 2 GitHub Repository.
 * Option 1 will be chosen by the controller if a user is found, which then the account will be logged in ( and the email will be saved using Express-Sessions) and then redirecting them to the websites product catalog
 * Option 2 will be chosen by the controller if a user is not found, then telling the user and redirecting them back to the login page, the following is an image of the "./views/loginResult.js",
 * ![Screenshot 2024-04-25 133715](https://github.com/mjollnir03/CS351-Project2/assets/98365394/6f2ed508-a6a9-4081-b9ef-0ca6f39b6931)
-
-### account.html -> (Ellmaer Ranjber)
-* Talk about your part
 
 ### product pages + shopping -> (Quy Phan + Arnold Portela)
 * Talk about your part
