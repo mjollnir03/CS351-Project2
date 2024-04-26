@@ -9,4 +9,5 @@
 * Quy Phan
 * Arnold Portela
 
-# Or refer to Projects [./docs/index.md] for in depth explaination of the project !
+# Link to our Website Deployed to Google Cloud Run: https://cs351-project2-fatfts32ca-ue.a.run.app
+
