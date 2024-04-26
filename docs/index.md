@@ -66,7 +66,10 @@ This is Group 5's CS351 Project 2 GitHub Repository.
 * ![Screenshot 2024-04-25 133715](https://github.com/mjollnir03/CS351-Project2/assets/98365394/6f2ed508-a6a9-4081-b9ef-0ca6f39b6931)
 
 ### product pages + shopping -> (Quy Phan + Arnold Portela)
-* Talk about your part
+* We worked on mostly frontend and editing the pages to make it look like the other product pages. 
+* We implemeted the cart.ejs and shopping cart check out page.
+* We had to research and look up a lot of information on using sessions.
+* We spent a lot of time debugging and getting everything to work together.
 
 ### cart -> (Austin Ly)
 * I mainly worked on the backend for the cart system and the express-sessions. 
@@ -79,5 +82,8 @@ This is Group 5's CS351 Project 2 GitHub Repository.
 
 
 ### shopping cart check out -> (Quy Phan + Arnold Portela)
-* Talk about your part
+* Shopping cart was a bit easier since we figured out how to use cart.
+* Arnold worked on making sure the syntax was correct and debugging.
+* Quy worked on making sure the product got added correctly and the CSS of the page
+* Arnold worked on the form and getting the functions to work.
 
