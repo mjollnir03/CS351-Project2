@@ -38,32 +38,53 @@
                     </svg> Check Out</a>
             </div>
         </nav>
+
+
+
+
+
+
+
         <h1 class="text-center my-4"><strong>Ellmaer Ranjber's MarketPlace</strong></h1>
 
-<h2>Cart</h2>
-<ul>
-    <% cart.forEach(item => { %>
-        <li><%= item[0] %> - $<%= item[1] %></li>
-    <% }); %>
-</ul>
+<h2 class="text-center">Cart</h2>
+        <ul class="text-center">
+            <% let sumTotal = 0; %>
+            <% cart.forEach(item => { %>
+            <li class="text-center"><%= item[0] %> - $
+                <%= item[1] %></li>
+                <% sumTotal += parseFloat(item[1]); %>
+            <% }); %>
+            <li class="text-center"><strong>Total:</strong> $ <%= sumTotal.toFixed(2) %></li>
+        </ul>
 
-<h1>Shipping Information</h1>
+        <script>
+            // Assuming `cart` is defined somewhere in your JavaScript
+            // For example:
+            // const cart = [['Item 1', 10], ['Item 2', 20], ['Item 3', 30]];
+        </script>
 
+
+
+
+<h1 class="text-center">Shipping Information</h1>
+<form class="text-center">
     <label for="name">Name:</label><br>
-    <input type="text" id="name" name="name" required><br><br>
+    <input type="text" id="name" name="name" placeholder="Enter your Name" required><br><br>
 
     <label for="email">Email:</label><br>
-    <input type="email" id="email" name="email" required><br><br>
+    <input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
 
     <label for="address">Address:</label><br>
-    <textarea id="address" name="address" required></textarea><br><br>
+    <textarea id="address" name="address" placeholder="Enter your Address" required></textarea><br><br>
 
     <label for="phone">Phone Number:</label><br>
-    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required><br><br>
+    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="Enter your Phone Number" required><br><br>
 
-    <button type="submit">Submit</button>
-<h1>Shipping Options</h1>
-
+    <button type="submit" class="btn btn-primary ml-2 my-2 my-sm-0">Submit</button>
+</form>
+<h1 class="text-center">Shipping Options</h1>
+<form class="text-center">
     <input type="radio" id="overnight" name="shipping" value="overnight">
     <label for="overnight">Overnight Shipping ($100.00)</label><br>
 
@@ -73,30 +94,48 @@
     <input type="radio" id="ground" name="shipping" value="ground">
     <label for="ground">Ground Shipping ($20.00)</label><br>
 
-
-
-
-<h1>Clear Cart</h1>
-<form action="/clearCart" method="GET">
-    <button type="submit">Clear Cart</button>
 </form>
 
-<h1>Remove an Item</h1>
-<form action="/removeFromCart" method="GET">
-    <button type="submit">Remove an Item</button>
+        <h1 class="text-center">Credit Card Payment</h1>
+
+        <form action="/process_payment" method="POST" class="text-center">
+            <label for="card_number" >Card Number:</label>
+            <input type="text" id="card_number" name="card_number" placeholder="Enter your card number" required><br><br>
+
+            <label for="expiration_date">Expiration Date:</label>
+            <input type="text" id="expiration_date" name="expiration_date" placeholder="MM/YY" required><br><br>
+
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" placeholder="Enter CVV" required><br><br>
+
+            <label for="name_on_card">Name on Card:</label>
+            <input type="text" id="name_on_card" name="name_on_card" placeholder="Enter name on card" required><br><br>
+
+        </form>
+
+<h1 class="text-center" class="text-center">Clear Cart</h1>
+<form action="/clearCart" method="GET" class="text-center">
+    <button type="submit" class="btn btn-primary ml-2 my-2 my-sm-0" >Clear Cart</button>
 </form>
 
-<title>Place Order</title>
-<script>
-    function placeOrder() {
-        // Change the text of the button to display the thank you message
-        document.getElementById("orderButton").innerHTML = "Thank you for your order! Your order will be shipped soon.";
-    }
-</script>
+<h1 class="text-center">Remove an Item</h1>
+<form action="/removeFromCart" method="POST" class="text-center">
+    <input type= "text" name="productID" placeholder="Item to remove">
+    <button type="submit" class="btn btn-primary ml-2 my-2 my-sm-0">Remove an Item</button>
+</form>
+<br>
+    </br>
+        <div class="container">
+            <button id="redirectButton" style="font-size: 55px; display: block; margin: 0 auto;">Place Order</button>
+            <p class="text-center" >Click the button above to place your order.</p>
+        </div>
 
 
-<h1>Place Order</h1>
-<button id="orderButton" onclick="placeOrder()">Place Order</button>
+        <script>
+            document.getElementById("redirectButton").onclick = function() {
+                window.location.href = "thank_you_page.html";
+            };
+        </script>
 
 </body>
 </html>
