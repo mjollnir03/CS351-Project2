@@ -53,6 +53,17 @@
     <button type="submit">Remove an Item</button>
 </form>
 
+<title>Place Order</title>
+<script>
+    function placeOrder() {
+        // Change the text of the button to display the thank you message
+        document.getElementById("orderButton").innerHTML = "Thank you for your order! Your order will be shipped soon.";
+    }
+</script>
+
+
+<h1>Place Order</h1>
+<button id="orderButton" onclick="placeOrder()">Place Order</button>
 
 </body>
 </html>
