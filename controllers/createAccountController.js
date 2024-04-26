@@ -46,6 +46,14 @@ async function checkAccountExistance(email, password) {
 module.exports.attemptCreateAccount = async function(req, res, next){
     var value_password = req.body.password;
     var value_email = req.body.email;
+    var value_firstName = req.body.firstName;
+    var value_lastName = req.body.lastName;
+    var value_street = req.body.street;
+    var value_city = req.body.city;
+    var value_state = req.body.selectedState;
+    var value_zip = req.body.zip;
+    var value_phoneNumber = req.body.phoneNumber;
+
 
     try {
         const accountExists = await checkAccountExistance(value_email, value_password);
@@ -56,7 +64,18 @@ module.exports.attemptCreateAccount = async function(req, res, next){
             await client.connect();
             const db = client.db("mainDataBase");
             const usersCollection = db.collection("users");
-            await usersCollection.insertOne({ email: value_email, password: value_password });
+            // Insert all values into the database
+            await usersCollection.insertOne({
+                email: value_email,
+                password: value_password,
+                firstName: value_firstName,
+                lastName: value_lastName,
+                street: value_street,
+                city: value_city,
+                state: value_state,
+                zip: value_zip,
+                phoneNumber: value_phoneNumber
+            });
 
             res.render('createAccountResult', { success: true, message: 'Your account has been created successfully!' });
             req.session.user = value_email;
